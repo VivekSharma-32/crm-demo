@@ -111,4 +111,86 @@ public class CustomerDao {
         List<Customer> list = customers.list();
         return list;
     }
+
+    public List<Customer> getCustomerByLastName(String lastName) {
+        Session session = sf.openSession();
+        Query<Customer> customers = session.createQuery("from Customer c where c.lastName = :lastName",
+                Customer.class);
+        customers.setParameter("lastName", lastName);
+        List<Customer> list = customers.list();
+        return list;
+    }
+
+    public List<Customer> getCustomerByEmail(String email) {
+        Session session = sf.openSession();
+        Query<Customer> customers = session.createQuery("from Customer c where c.email = :email",
+                Customer.class);
+        customers.setParameter("email", email);
+        List<Customer> list = customers.list();
+        return list;
+    }
+
+    public List<Customer> getCustomerByMobileNumber(String mobileNumber) {
+        Session session = sf.openSession();
+        Query<Customer> customers = session.createQuery("from Customer c where c.mobileNumber = :mobileNumber",
+                Customer.class);
+        customers.setParameter("mobileNumber", mobileNumber);
+        List<Customer> list = customers.list();
+        return list;
+    }
+
+    public String updateCustomerFirstName(int id, String firstName) {
+        Session session = sf.openSession();
+        Transaction tr = session.beginTransaction();
+        Customer customer = session.get(Customer.class, id);
+        customer.setFirstName(firstName);
+        tr.commit();
+        session.close();
+        return "Customer updated successfully";
+    }
+
+    public String updateCustomerLastName(int id, String lastName) {
+        Session session = sf.openSession();
+        Transaction tr = session.beginTransaction();
+        Customer customer = session.get(Customer.class, id);
+        customer.setLastName(lastName);
+        tr.commit();
+        session.close();
+        return "Customer updated successfully";
+    }
+
+    public String updateCustomerEmail(int id, String email) {
+        Session session = sf.openSession();
+        Transaction tr = session.beginTransaction();
+        Customer customer = session.get(Customer.class, id);
+        customer.setEmail(email);
+        tr.commit();
+        session.close();
+        return "Email updated successfully";
+    }
+
+    public String updateCustomerMobileNumber(int id, String mobileNumber) {
+        Session session = sf.openSession();
+        Transaction tr = session.beginTransaction();
+        Customer customer = session.get(Customer.class, id);
+        customer.setMobileNumber(mobileNumber);
+        tr.commit();
+        session.close();
+        return "Mobile Number updated successfully";
+    }
+
+    public String updateAge(int id, int age) {
+        Session session = sf.openSession();
+        Transaction tr = session.beginTransaction();
+        Customer customer = session.get(Customer.class, id);
+        customer.setAge(age);
+        tr.commit();
+        session.close();
+        return "Age has been updated successfully";
+    }
+
+    public List<String> getCustomersFirstName() {
+        Session session = sf.openSession();
+        return session.createQuery("Select c.firstName FROM Customer c").list();
+    }
 }

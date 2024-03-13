@@ -12,6 +12,7 @@ import com.CustomerRelationshipManagement.service.CustomerService;
 import jakarta.websocket.server.PathParam;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,5 +80,55 @@ public class CustomerController {
     @GetMapping("/age/{age}")
     public List<Customer> getCustomerByAge(@PathVariable int age) {
         return customerService.getCustomerByAge(age);
+    }
+
+    @GetMapping("/lastName/{lastName}")
+    public List<Customer> getCustomerByLastName(@PathVariable String lastName) {
+        return customerService.getCustomerByLastName(lastName);
+    }
+
+    @GetMapping("/email/{email}")
+    public List<Customer> getCustomerByEmail(@PathVariable String email) {
+        return customerService.getCustomerByEmail(email);
+    }
+
+    @GetMapping("/mobile/{mobile}")
+    public List<Customer> getCustomerByMobileNumber(@PathVariable String mobile) {
+        return customerService.getCutomersByMoblieNumber(mobile);
+    }
+
+    @PutMapping("/fname/{id}")
+    public String updateFirstName(@PathVariable int id, @RequestBody Map<String, String> request) {
+        String firstName = request.get("firstName");
+        return customerService.updateCustomerFirstName(id, firstName);
+    }
+
+    @PutMapping("/lname/{id}")
+    public String updateLastName(@PathVariable int id, @RequestBody Map<String, String> request) {
+        String lastName = request.get("lastName");
+        return customerService.updateCustomerLastName(id, lastName);
+    }
+
+    @PutMapping("/email/{id}")
+    public String updateEmail(@PathVariable int id, @RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        return customerService.updateCustomerEmail(id, email);
+    }
+
+    @PutMapping("/mobile/{id}")
+    public String updateMobileNumber(@PathVariable int id, @RequestBody Map<String, String> request) {
+        String mobile = request.get("mobileNumber");
+        return customerService.updateCustomerMobileNumber(id, mobile);
+    }
+
+    @PutMapping("/age/{id}")
+    public String updateAge(@PathVariable int id, @RequestBody Map<String, Integer> request) {
+        int age = request.get("age");
+        return customerService.updateAge(id, age);
+    }
+
+    @GetMapping("/firstNames")
+    public List<String> getFirstNames() {
+        return customerService.getCustomersFirstName();
     }
 }

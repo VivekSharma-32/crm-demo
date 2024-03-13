@@ -74,4 +74,49 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.getCustomerByAge(id);
     }
 
+    @Override
+    public List<Customer> getCustomerByLastName(String lastName) {
+        return customerDao.getCustomerByLastName(lastName);
+    }
+
+    @Override
+    public List<Customer> getCustomerByEmail(String email) {
+        return customerDao.getCustomerByEmail(email);
+    }
+
+    @Override
+    public List<Customer> getCutomersByMoblieNumber(String mobile) {
+        return customerDao.getCustomerByMobileNumber(mobile);
+    }
+
+    @Override
+    public String updateCustomerLastName(int id, String lastName) {
+        return customerDao.updateCustomerLastName(id, lastName);
+    }
+
+    @Override
+    public String updateCustomerFirstName(int id, String firstName) {
+        return customerDao.updateCustomerFirstName(id, firstName);
+    }
+
+    @Override
+    public String updateCustomerEmail(int id, String email) {
+        return customerDao.updateCustomerEmail(id, email);
+    }
+
+    @Override
+    public String updateCustomerMobileNumber(int id, String mobileNumber) {
+        return customerDao.updateCustomerMobileNumber(id, mobileNumber);
+    }
+
+    @Override
+    public String updateAge(int id, int age) {
+        return customerDao.updateAge(id, age);
+    }
+
+    @Override
+    public List<String> getCustomersFirstName() {
+        return customerDao.getCustomersFirstName();
+    }
+
 }
